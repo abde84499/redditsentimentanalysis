@@ -73,9 +73,6 @@ plt.ylabel('Post Count')
 plt.xlabel('Category')
 plt.show()
 
-# Create a TF-IDF matrix of the cleaned text
-
-# Train an NMF model with 10 topics
 # Get the top 10 words for each topic
 for LINK_FLAIR_TEXT, group in df.groupby('LINK_FLAIR_TEXT'):
     print(f"Link Flair Text: {LINK_FLAIR_TEXT}\n")
