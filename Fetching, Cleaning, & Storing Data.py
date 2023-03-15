@@ -25,22 +25,22 @@ ctx = snowflake.connector.connect(
 cur = ctx.cursor()
 
 subreddit_name = "datascience"
-num_posts = 10000
+num_posts = 1000
 
 # Retrieve information from Reddit
 subreddit = reddit.subreddit(subreddit_name)
 new_posts = subreddit.new(limit=num_posts)
 
 create_table_sql = "CREATE TABLE data_science(" \
-                   "subreddit VARCHAR(500)," \
-                   "title VARCHAR(1000)," \
-                   "selftext VARCHAR(50000)," \
+                   "subreddit VARCHAR(2-)," \
+                   "title VARCHAR(100)," \
+                   "selftext VARCHAR(5000)," \
                    "upvote_ratio INT," \
                    "ups INT," \
                    "downs INT," \
                    "score INT," \
                    "sentiment FLOAT," \
-                   "link_flair_text VARCHAR(500)," \
+                   "link_flair_text VARCHAR(20)," \
                    "created_utc NUMBER," \
                    "created_date DATE" \
                    "); "
@@ -48,9 +48,6 @@ create_table_sql = "CREATE TABLE data_science(" \
 cur.execute(create_table_sql)
 
 def clean_text(text):
-    """
-    Utility function to clean text by removing links, special characters, and converting text to lowercase.
-    """
     # remove links
     text = re.sub(r'http\S+', '', text)
     # remove special characters
